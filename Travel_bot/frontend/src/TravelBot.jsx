@@ -130,8 +130,8 @@ export default function TravelBotDemo() {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 34, height: 34, borderRadius: 10, background: "linear-gradient(135deg, #6C5CE7, #00B894)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, color: "#fff", fontWeight: 800 }}>◈</div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: 15 }}>Travel Bot</div>
-            <div style={{ fontSize: 10, color: "#666" }}>by Manaswi · powered by Claude AI</div>
+            <div style={{ fontWeight: 800, fontSize: 15 }}>TripScout</div>
+            <div style={{ fontSize: 10, color: "#666" }}>by Tejaswi· Smart travel,Simple Planning</div>
           </div>
         </div>
         <button onClick={() => { setMsgs([{ from: "bot", text: "Fresh start! Where would you like to go?" }]); setHistory([]); setSearched(false); setPendingSearch(false); }} style={{ background: "#1A1A24", border: "1px solid #2A2A38", borderRadius: 8, padding: "6px 14px", fontSize: 11, cursor: "pointer", color: "#aaa", fontWeight: 600 }}>New chat</button>
