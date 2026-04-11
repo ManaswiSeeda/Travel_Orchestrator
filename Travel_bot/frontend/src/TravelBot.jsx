@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL?.trim();
+const API_BASE = (RAW_API_BASE || "http://127.0.0.1:8000").replace(/\/+$/, "");
+
 const FLIGHTS = [
   { airline: "ANA", price: 580, stops: 0, dur: "7h 30m" },
   { airline: "Air India", price: 420, stops: 1, dur: "12h 45m" },
@@ -81,24 +84,19 @@ export default function TravelBotDemo() {
     }
 
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch(`${API_BASE}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 600,
-          system: SYS,
           messages: newHist,
+          trip_context: {},
         }),
       });
 
       const data = await res.json();
-      let reply = data.content?.map(c => c.text || "").join("") || "Sorry, I couldn't process that. Try again!";
-
-      const shouldSearch = reply.includes("[SEARCH_READY]") && !searched && !pendingSearch;
-      reply = reply.replace("[SEARCH_READY]", "").trim();
-
-      if (shouldSearch) {
+      let reply = data.reply || "Sorry, I couldn't process that. Try again!";
+      const tripReady = data.trip_data && data.trip_data.ready && !searched && !pendingSearch;
+      if (tripReady) {
         reply += "\n\nShall I search for flights, hotels, and weather now?";
         setPendingSearch(true);
       }
