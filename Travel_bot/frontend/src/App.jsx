@@ -1,5 +1,4 @@
 import { useState } from "react";
-import TravelAgent from "./TravelAgent";
 import TravelBot from "./TravelBot";
 
 export default function App() {
