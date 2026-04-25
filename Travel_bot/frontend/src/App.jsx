@@ -25,17 +25,6 @@ export default function App() {
         >
           ◈ Chat Bot
         </button>
-        <button
-          onClick={() => setMode("form")}
-          style={{
-            padding: "10px 16px", border: "none", fontSize: 12, fontWeight: 700,
-            cursor: "pointer",
-            background: mode === "form" ? "#00B894" : "#1A1A24",
-            color: mode === "form" ? "#fff" : "#888",
-          }}
-        >
-          □ Form Mode
-        </button>
       </div>
 
       {mode === "bot" ? <TravelBot /> : <TravelAgent />}
